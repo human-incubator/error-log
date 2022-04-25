@@ -1,0 +1,24 @@
+{
+    "name": "human-incubator/error-log",
+    "description": "A tool for client  sites to register errors to centralized error system",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "HumanIncubator\\ErrorLog\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Human Incubator",
+            "email": "johnmark@hiro-c.net"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "HumanIncubator\\ErrorLog\\ErrorLogServiceProvider"
+            ]
+        }
+    }
+}
