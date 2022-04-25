@@ -32,14 +32,11 @@ class ErrorLog {
     public static function log(string $message, $error_code = null, $category = null) {
         self::init();
 
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-
         try {
             $params = [
                 'message' => $message,
                 'category' => $category,
                 'error_code' => $error_code,
-                'user_agent' => $user_agent
             ];
 
             $response = Http::withToken(self::$client_api_key)->post(self::$errorlog_url . "/client/log", $params);
