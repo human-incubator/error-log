@@ -29,12 +29,13 @@ class ErrorLog {
         self::$mode = $mode;
     }
 
-    public static function log(string $message, $error_code = null, $category = null) {
+    public static function log(string $message, $username = null, $error_code = null, $category = null) {
         self::init();
 
         try {
             $params = [
                 'message' => $message,
+                'user_name' => $username,
                 'category' => $category,
                 'error_code' => $error_code,
             ];

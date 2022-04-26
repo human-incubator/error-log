@@ -11,6 +11,6 @@ class ErrorLogServiceProvider extends ServiceProvider {
     public function register() {
         $this->publishes([
             __DIR__.'/../config/errorlog.php' => config_path('errorlog.php'),
-        ]);
+        ], 'errorlog-config');
     }
 }
