@@ -30,7 +30,7 @@ class ErrorLog {
         self::$mode = $mode;
     }
 
-    public static function log(string $message, $username = null, $error_code = null, $category = null) {
+    public static function log(string $message, $username = null, $error_code = null, $category = null, $exception_trace = null) {
         self::init();
 
         $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
@@ -41,7 +41,8 @@ class ErrorLog {
                 'user_name' => $username,
                 'category' => $category,
                 'error_code' => $error_code,
-                'user_agent' => $user_agent
+                'user_agent' => $user_agent,
+                'exception_trace' => $exception_trace
             ];
 
             $response = Http::withToken(self::$client_api_key)->post(self::$errorlog_url . "/client/log", $params);
