@@ -16,11 +16,11 @@ class ErrorLog {
         $mode = Config::get('errorlog.mode');
 
         if ($mode == 'production') {
-            self::$errorlog_url = 'https://api.centralized-error.com';
+            self::$errorlog_url = 'https://errors-api.human-incubator.com';
         }
 
         if ($mode == 'test') {
-            self::$errorlog_url = 'https://api.centralized-error.hiro-test.net';
+            self::$errorlog_url = 'https://centralized-error-api.hiro-test.net';
         }
 
         if ($mode == 'development') {
