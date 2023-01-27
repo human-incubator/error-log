@@ -64,4 +64,39 @@ class ErrorLog {
             ];
         }
     }
+
+    public static function logByObject(array $param) {
+        self::init();
+        $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
+  
+        try {
+            $params = [
+                'message' => $param['message'],
+                'user_name' => $param['user_name'],
+                'category' => $param['category'],
+                'error_code' => $param['error_code'],
+                'user_agent' => $user_agent,
+                'exception_trace' => $param['exception_trace'],
+                'severity' => $param['severity']
+            ];
+
+            $response = Http::withToken(self::$client_api_key)->post(self::$errorlog_url . "/client/log", $params);
+     
+            if ($response->failed()) {
+                return [
+                    'error' => true,
+                    'status' => $response->status(),
+                    'message' => json_decode($response->body())
+                ];
+            } else {
+                return json_decode($response);
+            }
+        } catch (\Throwable $th) {
+            return [
+                'error' => true,
+                'status' => 500,
+                'message' => ['code' => $th->getCode(), 'message'=> $th->getMessage()]
+            ];
+        }
+    }
 }
